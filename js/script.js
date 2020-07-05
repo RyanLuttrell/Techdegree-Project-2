@@ -71,7 +71,14 @@ function showPage(list, page) {
 ***/
 
 function appendPageLinks() {
-
+   const numberOfPages = Math.ceil(studentItem.length/10);
+   for (let i = 1; i <= numberOfPages; i++) {
+      //create a new div
+      //create a new ul
+      //create new button element
+      //insert button text Content
+      //append the new button as the last child of the student list
+   }
 };
 
 const numberOfPages = Math.ceil(studentItem.length/10);
