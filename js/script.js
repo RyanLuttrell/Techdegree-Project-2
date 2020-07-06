@@ -17,7 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const pageDiv = document.querySelector('.page');
-const studentItem = document.querySelectorAll('.student-item');
+const studentList = document.querySelectorAll('.student-item');
 
 
 
@@ -38,10 +38,10 @@ const studentItem = document.querySelectorAll('.student-item');
 
 function showPage(list, page) {
    for (let i = 0; i < list.length; i++) {
-      if (list.indexOf(i) >= page*10-10 && list.indexOf(i) < page*10) {
-         list[i].style.visibility = 'visible';
+      if (i >= page*10-10 && i < page*10) {
+         list[i].style.display = '';
       } else {
-         list[i].style.visibility = 'hidden';
+         list[i].style.display = 'none';
       }
    }
 };
@@ -52,21 +52,25 @@ function showPage(list, page) {
    functionality to the pagination buttons.
 ***/
 
-// function appendPageLinks() {
-//    const numberOfPages = Math.ceil(studentItem.length/10);
-//    const newDiv = document.createElement('div');
-//    newDiv.className = 'pagination';
-//    pageDiv.appendChild(newDiv);
-//    const newUl = document.createElement('ul');
-//    newDiv.appendChild(newUl);
-//    for (let i = 1; i <= numberOfPages; i++) {
-//       const newLi = document.createElement('li');
-//       newLi.innerHTML = `<a>${i}</a>`;
-//       newUl.appendChild(newLi);
-//       newLi.addEventListener('click', showPage());
-//    }
+function appendPageLinks(list) {
+   const numberOfPages = Math.ceil(list.length/10);
+   const newDiv = document.createElement('div');
+   newDiv.className = 'pagination';
+   pageDiv.appendChild(newDiv);
+   const newUl = document.createElement('ul');
+   newDiv.appendChild(newUl);
+   for (let i = 1; i <= numberOfPages; i++) {
+      const newLi = document.createElement('li');
+      newLi.innerHTML = `<a>${i}</a>`;
+      newUl.appendChild(newLi);
+      showPage(list, 1);
+      newLi.addEventListener('click', () => {
+         const selectedPage = newLi.textContent;
+         showPage(list, selectedPage);
+      });
+   }
 
-// };
+};
 
 
-// appendPageLinks();
+appendPageLinks(studentList);
