@@ -64,15 +64,18 @@ function appendPageLinks(list) {
       newLi.innerHTML = `<a>${i}</a>`;
       newUl.appendChild(newLi);
       showPage(list, 1);
+
       newLi.addEventListener('click', () => {
          const selectedPage = newLi.textContent;
          showPage(list, selectedPage);
+         for (let i = 0; i < numberOfPages; i++) {
+            let liTry = document.querySelectorAll('.active');
+            liTry[i].className = 'inactive';
+         }
       });
    }
-   newLi.addEventListener ('click', (e) => {
-      for (let i = 1; i < numberOfPages; i++) {
-         
-      }
+   newUl.addEventListener ('click', (e) => {
+      e.target.className = 'active';
    })
 
 };
