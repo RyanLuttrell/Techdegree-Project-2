@@ -16,7 +16,7 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-const studentList = document.querySelectorAll('.student-list')
+const pageDiv = document.querySelector('.page');
 const studentItem = document.querySelectorAll('.student-item');
 
 
@@ -72,13 +72,19 @@ function showPage(list, page) {
 
 function appendPageLinks() {
    const numberOfPages = Math.ceil(studentItem.length/10);
+   const newDiv = document.createElement('div');
+   newDiv.className = 'pagination';
+   pageDiv.appendChild(newDiv);
+   const newUl = document.createElement('ul');
+   newDiv.appendChild(newUl);
    for (let i = 1; i <= numberOfPages; i++) {
-      //create a new div
-      //create a new ul
-      //create new button element
-      //insert button text Content
-      //append the new button as the last child of the student list
+      const newLi = document.createElement('li');
+      newLi.innerHTML = `<a>${i}</a>`;
+      newUl.appendChild(newLi);
+      newLi.addEventListener('click', showPage(, i))
    }
 };
+
+appendPageLinks();
 
 const numberOfPages = Math.ceil(studentItem.length/10);
