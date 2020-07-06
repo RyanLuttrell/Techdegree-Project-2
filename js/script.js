@@ -69,6 +69,11 @@ function appendPageLinks(list) {
          showPage(list, selectedPage);
       });
    }
+   newLi.addEventListener ('click', (e) => {
+      for (let i = 1; i < numberOfPages; i++) {
+         
+      }
+   })
 
 };
 
