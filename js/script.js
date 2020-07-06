@@ -69,8 +69,8 @@ function appendPageLinks(list) {
          const selectedPage = newLi.textContent;
          showPage(list, selectedPage);
          for (let i = 0; i < numberOfPages; i++) {
-            let liTry = document.querySelectorAll('.active');
-            liTry[i].className = '';
+            const liTry = document.querySelectorAll('.active');
+            liTry[i].classList.remove('active');
          }
       });
    }
@@ -89,7 +89,14 @@ const searchDiv = document.createElement('div');
 const searchInput = document.createElement('input');
 searchInput.placeholder = 'Search for students...';
 searchDiv.className = 'student-search';
-
 pageHeader.appendChild(searchDiv).appendChild(searchInput);
+
+// searchInput.addEventListener('keyup', (e) => {
+//    for (let i = 0; i < studentList.length; i++) {
+//       if () {
+
+//       }
+//    }
+// })
 
 
