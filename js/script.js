@@ -21,7 +21,6 @@ const studentItem = document.querySelectorAll('.student-item');
 
 
 
-
 /*** 
    Create the `showPage` function to hide all of the items in the 
    list except for the ten you want to show.
@@ -39,27 +38,10 @@ const studentItem = document.querySelectorAll('.student-item');
 
 function showPage(list, page) {
    for (let i = 0; i < list.length; i++) {
-      if (list[i] >= 0 && list[i] <= 9) {
-         //if button one is pressed show
-         //else hide
-      } else if (list[i] >= 10 && list[i] <= 19) {
-         //if button two is pressed show
-         //else hide
-      } else if (list[i] >= 20 && list[i] <= 29) {
-         //if button three is pressed show
-         //else hide
-      } else if (list[i] >= 30 && list[i] <= 39) {
-         //if button four is pressed show
-         //else hide
-      } else if (list[i] >= 40 && list[i] <= 49) {
-         //if button five is pressed show
-         //else hide
-      } else if (list[i] >= 50 && list[i] <= 59) {
-         //if button six is pressed show
-         //else hide
-      } else if (list[i] >= 60 && list[i] <= 69) {
-         //if button seven is pressed show
-         //else hide
+      if (list.indexOf(i) >= page*10-10 && list.indexOf(i) < page*10) {
+         list[i].style.visibility = 'visible';
+      } else {
+         list[i].style.visibility = 'hidden';
       }
    }
 };
@@ -70,24 +52,21 @@ function showPage(list, page) {
    functionality to the pagination buttons.
 ***/
 
-function appendPageLinks() {
-   const numberOfPages = Math.ceil(studentItem.length/10);
-   const newDiv = document.createElement('div');
-   newDiv.className = 'pagination';
-   pageDiv.appendChild(newDiv);
-   const newUl = document.createElement('ul');
-   newDiv.appendChild(newUl);
-   for (let i = 1; i <= numberOfPages; i++) {
-      const newLi = document.createElement('li');
-      newLi.innerHTML = `<a>${i}</a>`;
-      newUl.appendChild(newLi);
-      newLi.addEventListener('click', () => {
-         event.target.className = 'active';
-         for (i = 1; i <= numberOfPages; i++) {
-            
-         }
-      })
-   }
-};
+// function appendPageLinks() {
+//    const numberOfPages = Math.ceil(studentItem.length/10);
+//    const newDiv = document.createElement('div');
+//    newDiv.className = 'pagination';
+//    pageDiv.appendChild(newDiv);
+//    const newUl = document.createElement('ul');
+//    newDiv.appendChild(newUl);
+//    for (let i = 1; i <= numberOfPages; i++) {
+//       const newLi = document.createElement('li');
+//       newLi.innerHTML = `<a>${i}</a>`;
+//       newUl.appendChild(newLi);
+//       newLi.addEventListener('click', showPage());
+//    }
 
-appendPageLinks();
+// };
+
+
+// appendPageLinks();
