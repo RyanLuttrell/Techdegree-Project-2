@@ -81,10 +81,13 @@ function appendPageLinks() {
       const newLi = document.createElement('li');
       newLi.innerHTML = `<a>${i}</a>`;
       newUl.appendChild(newLi);
-      newLi.addEventListener('click', showPage(, i))
+      newLi.addEventListener('click', () => {
+         event.target.className = 'active';
+         for (i = 1; i <= numberOfPages; i++) {
+            
+         }
+      })
    }
 };
 
 appendPageLinks();
-
-const numberOfPages = Math.ceil(studentItem.length/10);
