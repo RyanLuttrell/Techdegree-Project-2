@@ -58,45 +58,58 @@ function appendPageLinks(list) {
    newDiv.className = 'pagination';
    pageDiv.appendChild(newDiv);
    const newUl = document.createElement('ul');
+   
    newDiv.appendChild(newUl);
    for (let i = 1; i <= numberOfPages; i++) {
       const newLi = document.createElement('li');
       newLi.innerHTML = `<a>${i}</a>`;
       newUl.appendChild(newLi);
       showPage(list, 1);
-
-      newLi.addEventListener('click', () => {
-         const selectedPage = newLi.textContent;
-         showPage(list, selectedPage);
-         for (let i = 0; i < numberOfPages; i++) {
-            const liTry = document.querySelectorAll('.active');
-            liTry[i].classList.remove('active');
-         }
-      });
    }
-   newUl.addEventListener ('click', (e) => {
-      e.target.className = 'active';
-   })
 
+   newUl.querySelector('li:first-child a').classList.add('active');
+   newUl.addEventListener('click', (event) => {
+     const target = event.target.closest('a');
+     if (target == null) return;
+     newUl.querySelector('.active').classList.remove('active');
+     showPage(list, event.target.textContent);
+     event.target.classList.add('active');
+   });
 };
-appendPageLinks(studentList);
+
 
 
 //Going for exceeds expectations
+const initialPages = appendPageLinks(studentList);
 
 const pageHeader = document.querySelector('.page-header');
 const searchDiv = document.createElement('div');
 const searchInput = document.createElement('input');
+const noResults = document.createElement('h3');
+noResults.textContent = 'Sorry, there are no results';
+noResults.style.display = 'none';
 searchInput.placeholder = 'Search for students...';
 searchDiv.className = 'student-search';
 pageHeader.appendChild(searchDiv).appendChild(searchInput);
+searchDiv.appendChild(noResults);
+let totalSearchResults = 0;
 
-// searchInput.addEventListener('keyup', (e) => {
-//    for (let i = 0; i < studentList.length; i++) {
-//       if () {
-
-//       }
-//    }
-// })
+searchInput.addEventListener('keyup', (e) => {
+   for (let i = 0; i < studentList.length; i++) {
+      if (studentList[i].childNodes[1].childNodes[3].textContent.toUpperCase().includes(searchInput.value.toUpperCase())) {
+         studentList[i].style.display = '';
+      } else {
+         studentList[i].style.display = 'none';
+      }
+   }
+   return totalSearchResults;
+   if (searchInput.value === '') {
+      initialPages.display = '';
+      searchPages.display = 'none';
+   } else {
+      appendPageLinks(totalSearchResults)
+      initialPages.display = '';
+   }
+})
 
 
